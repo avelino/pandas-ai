@@ -87,10 +87,7 @@ Rewrite the answer to the question in a conversational way.
         """Run the LLM with the given prompt"""
         self.log(f"Running PandasAI with {self._llm.type} LLM...")
 
-        rows_to_display = 5
-        if self._enforce_privacy:
-            rows_to_display = 0
-
+        rows_to_display = 0 if self._enforce_privacy else 5
         code = self._llm.generate_code(
             self._task_instruction.format(
                 df_head=data_frame.head(rows_to_display),
@@ -176,8 +173,7 @@ Code generated:
             return eval(last_line[6:-1])
         # Evaluate last line and return its value or the captured output
         try:
-            result = eval(last_line)
-            return result
+            return eval(last_line)
         except:
             return captured_output
 

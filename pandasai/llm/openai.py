@@ -130,12 +130,12 @@ class OpenAI(LLM):
         Returns:
             str: Response
         """
-        self.last_prompt = str(instruction) + str(value)
+        self.last_prompt = instruction + value
 
         if self.model in self._supported_completion_models:
-            response = self.completion(str(instruction) + str(value))
+            response = self.completion(instruction + value)
         elif self.model in self._supported_chat_models:
-            response = self.chat_completion(str(instruction) + str(value))
+            response = self.chat_completion(instruction + value)
         else:
             raise UnsupportedOpenAIModelError("Unsupported model")
 

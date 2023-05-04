@@ -13,7 +13,7 @@ class FakeLLM(LLM):
             self._output = output
 
     def call(self, instruction: str, value: str) -> str:
-        self.last_prompt = str(instruction) + str(value)
+        self.last_prompt = instruction + value
         return self._output
 
     @property
