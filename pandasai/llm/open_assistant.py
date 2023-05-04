@@ -35,7 +35,7 @@ class OpenAssistant(LLM):
 
     def call(self, instruction: str, value: str) -> str:
         output = self.query(
-            {"inputs": "<|prompter|>" + instruction + value + "<|endoftext|>"}
+            {"inputs": f"<|prompter|>{instruction}{value}<|endoftext|>"}
         )
         return output[0]["generated_text"]
 
